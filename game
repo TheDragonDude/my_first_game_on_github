@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍪cookie clicker</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        }
+        .main {
+            margin-top: 10px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+        .btn {
+            border: none;
+            background: none;
+            outline:none;
+            padding: 0px;
+            font-size: 300px;
+            transition: 1s;
+        }
+        .btn:hover {
+            font-size: 320px;
+            transition: 1s;
+        }
+        .btn:active {
+            font-size: 300px;
+            transition: .27s;
+
+        }
+        span {
+            font-size: 20px;
+        }
+        .number {
+            font-size: 25px;
+        }
+        .dark {
+            position: fixed;
+            top:0;
+            background-color: black;
+            opacity: .4;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+        }
+        .shop {
+            position: fixed;
+            z-index: 1;
+        }
+        .shop button {
+            border: none;
+            padding: 15px 24px;
+            margin-left: 10px;
+            margin-top: 10px;
+            font-size: 38px;
+            background-color: rgb(38, 148, 38);
+            border-radius: 20px;
+        }
+        .menu {
+            background-color: whitesmoke;
+            display: grid;
+            place-items: center;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <span class="shop">
+            <button>🛒</button>
+        </span>
+        <span>
+            <b><p style="color: rgb(218, 97, 49);">Cookies</p><p class='number'></p></b>
+        </span>
+        <button class='btn'>🍪</button>
+        <div class="dark">
+            <div class="menu">
+                <p>20 Cookies</p>
+                <button class="2c">2x Cookies</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        let cost = 20
+        var num = 0
+        let increase = 1
+        $('.number').text(num)
+        $('.btn').click(()=>{
+            num += increase
+            $('.number').text(num)  
+        })
+        $('.shop button').click(()=> {
+            $('.dark').toggle()
+        })
+        $('.2c').click(()=>{
+            if (num < cost ){
+                alert('No')
+                return
+            }
+            num=num-cost
+            cost=cost*3
+            $('.menu p').text(String(cost) + ' Cookie')
+            $('.number').text(num)
+
+            increase = 2 * increase
+        })
+    </script>
+</body>
+</html>
